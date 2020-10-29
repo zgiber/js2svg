@@ -34,14 +34,8 @@ func TestObjectDimensions(t *testing.T) {
 		{Object: o2, Relationship: "1..1"},
 	}
 
-	dst, err := os.Create("test.svg")
-	if err != nil {
-		t.Fatal(err)
-	}
-	defer dst.Close()
-
 	d := Diagram{Root: o}
-	err = d.Render(dst)
+	err := d.Render(os.Stdout)
 	assert.NoError(t, err)
 
 }
@@ -58,12 +52,7 @@ func TestParsing(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	dst, err := os.Create("test2.svg")
-	if err != nil {
-		t.Fatal(err)
-	}
-
-	err = d.Render(dst)
+	err = d.Render(os.Stdout)
 	if err != nil {
 		t.Fatal(err)
 	}
