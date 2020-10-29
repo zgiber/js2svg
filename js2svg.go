@@ -11,7 +11,7 @@ type Object struct {
 	Description string
 	Properties  []Property
 	ComposedOf  []Composition
-	Position    Position // ... of the top left corner of the rendered object
+	Position    Position // calculated ... of the top left corner of the rendered object
 }
 
 // Property (may rename to field)

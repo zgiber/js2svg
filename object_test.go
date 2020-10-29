@@ -9,7 +9,7 @@ import (
 )
 
 func TestObjectDimensions(t *testing.T) {
-	// very rudimentary .. eyaballing results in an svg viewer
+	// very rudimentary .. for eyaballing results in an svg viewer
 
 	o := testObject("o", 10)
 	o1 := testObject("o1", 10)
@@ -53,14 +53,22 @@ func TestParsing(t *testing.T) {
 	}
 	defer f.Close()
 
-	d, err := GenerateDiagram(f, "definitions.OBReadStandingOrder6")
+	d, err := GenerateDiagram(f, "components.schemas.OBReadStandingOrder6")
 	if err != nil {
 		t.Fatal(err)
 	}
-	_ = d
+
+	dst, err := os.Create("test2.svg")
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	err = d.Render(dst)
+	if err != nil {
+		t.Fatal(err)
+	}
 }
 
-// the returned object will be at least w=name and h=4
 func testObject(name string, h int) *Object {
 	o := Object{Name: name, Description: fmt.Sprintf("test object %s", name)}
 	for i := 0; i < h-4; i++ {

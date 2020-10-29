@@ -47,7 +47,7 @@ var (
 <line x1="{{(index . 0).Start.X}}em" y1="{{(index . 0).Start.Y}}em" x2="{{(index . 0).Stop.X}}em" y2="{{(index . 0).Stop.Y}}em" stroke="darkslategrey" marker-start="url(#Diamond)"/>
 <line x1="{{(index . 1).Start.X}}em" y1="{{(index . 1).Start.Y}}em" x2="{{(index . 1).Stop.X}}em" y2="{{(index . 1).Stop.Y}}em" stroke="darkslategrey" />
 <line x1="{{(index . 2).Start.X}}em" y1="{{(index . 2).Start.Y}}em" x2="{{(index . 2).Stop.X}}em" y2="{{(index . 2).Stop.Y}}em" stroke="darkslategrey" marker-end="url(#Triangle)"/>
-<text x="{{textPosition.X}}em" y="{{textPosition.Y}}em">1..1</text>`
+<text x="{{textPosition.X}}em" y="{{textPosition.Y}}em">{{relationship}}</text>`
 )
 
 // Diagram ...
@@ -100,6 +100,14 @@ type line struct {
 
 func renderConnection(dst io.Writer, from, to *Object) error {
 	functions := template.FuncMap(map[string]interface{}{
+		"relationship": func() string {
+			for _, comp := range from.ComposedOf {
+				if comp.Object == to {
+					return comp.Relationship
+				}
+			}
+			return ""
+		},
 		"textPosition": func() Position {
 			return Position{
 				X: to.Position.X - 3.5,
