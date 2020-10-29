@@ -1,5 +1,5 @@
 <?xml version="1.0" standalone="no"?>
-<svg xmlns="http://www.w3.org/2000/svg" font-family="monospace" width="112em" height="71em"><defs>
+<svg xmlns="http://www.w3.org/2000/svg" font-family="monospace" width="128em" height="89em"><defs>
     <marker id="Triangle"
       viewBox="0 0 10 10" refX="0" refY="5" 
       markerUnits="strokeWidth"
@@ -58,40 +58,66 @@
 <text style="font-weight:bold" text-anchor="middle" x="89em" y="27.3em" fill="darkslategrey">Creditor<title></title></text>
 <text x="83em" y="29.3em" fill="seagreen">SchemeName 1..1<title>Description could show validation rules for example.</title></text>
 
-<rect x="82em" y="32em" width="14em" height="5em" fill="azure" stroke="darkslategrey" stroke-width="2"/>
-<text style="font-weight:bold" text-anchor="middle" x="89em" y="33.3em" fill="darkslategrey">Creditor<title></title></text>
-<text x="83em" y="35.3em" fill="seagreen">SchemeName 1..1<title>Description could show validation rules for example.</title></text>
+<rect x="102em" y="26em" width="22em" height="14em" fill="azure" stroke="darkslategrey" stroke-width="2"/>
+<text style="font-weight:bold" text-anchor="middle" x="113em" y="27.3em" fill="darkslategrey">PostalAddress<title></title></text>
+<text x="103em" y="29.3em" fill="seagreen">AddressType 0..1<title>Description could show validation rules for example.</title></text>
+<text x="103em" y="30.400000000000002em" fill="seagreen">Department 0..1<title>Description could show validation rules for example.</title></text>
+<text x="103em" y="31.5em" fill="seagreen">SubDepartment 0..1<title>Description could show validation rules for example.</title></text>
+<text x="103em" y="32.6em" fill="seagreen">StreetName 0..1<title>Description could show validation rules for example.</title></text>
+<text x="103em" y="33.7em" fill="seagreen">BuildingNumber 0..1<title>Description could show validation rules for example.</title></text>
+<text x="103em" y="34.8em" fill="seagreen">PostCode 0..1<title>Description could show validation rules for example.</title></text>
+<text x="103em" y="35.9em" fill="seagreen">TownName 0..1<title>Description could show validation rules for example.</title></text>
+<text x="103em" y="37em" fill="seagreen">CountrySubdivision 0..1<title>Description could show validation rules for example.</title></text>
+<text x="103em" y="38.1em" fill="seagreen">Country 0..1<title>Description could show validation rules for example.</title></text>
+<text x="103em" y="39.2em" fill="seagreen">AddressLine 0..7<title>Description could show validation rules for example.</title></text>
 
-<rect x="82em" y="38em" width="27em" height="8em" fill="azure" stroke="darkslategrey" stroke-width="2"/>
-<text style="font-weight:bold" text-anchor="middle" x="95.5em" y="39.3em" fill="darkslategrey">DebtorAccount<title></title></text>
-<text x="83em" y="41.3em" fill="seagreen">SchemeName 1..1<title>Description could show validation rules for example.</title></text>
-<text x="83em" y="42.4em" fill="seagreen">Identification 1..1<title>Description could show validation rules for example.</title></text>
-<text x="83em" y="43.5em" fill="seagreen">Name 1..1<title>Description could show validation rules for example.</title></text>
-<text x="83em" y="44.599999999999994em" fill="seagreen">SecondaryIdentification 1..1<title>Description could show validation rules for example.</title></text>
+<rect x="82em" y="41em" width="14em" height="5em" fill="azure" stroke="darkslategrey" stroke-width="2"/>
+<text style="font-weight:bold" text-anchor="middle" x="89em" y="42.3em" fill="darkslategrey">Creditor<title></title></text>
+<text x="83em" y="44.3em" fill="seagreen">SchemeName 1..1<title>Description could show validation rules for example.</title></text>
 
-<rect x="82em" y="47em" width="21em" height="6em" fill="azure" stroke="darkslategrey" stroke-width="2"/>
-<text style="font-weight:bold" text-anchor="middle" x="92.5em" y="48.3em" fill="darkslategrey">RemittanceInformation<title></title></text>
-<text x="83em" y="50.3em" fill="seagreen">Unstructured 0..1<title>Description could show validation rules for example.</title></text>
-<text x="83em" y="51.4em" fill="seagreen">Reference 0..1<title>Description could show validation rules for example.</title></text>
+<rect x="102em" y="41em" width="22em" height="14em" fill="azure" stroke="darkslategrey" stroke-width="2"/>
+<text style="font-weight:bold" text-anchor="middle" x="113em" y="42.3em" fill="darkslategrey">PostalAddress<title></title></text>
+<text x="103em" y="44.3em" fill="seagreen">AddressType 0..1<title>Description could show validation rules for example.</title></text>
+<text x="103em" y="45.4em" fill="seagreen">Department 0..1<title>Description could show validation rules for example.</title></text>
+<text x="103em" y="46.5em" fill="seagreen">SubDepartment 0..1<title>Description could show validation rules for example.</title></text>
+<text x="103em" y="47.599999999999994em" fill="seagreen">StreetName 0..1<title>Description could show validation rules for example.</title></text>
+<text x="103em" y="48.699999999999996em" fill="seagreen">BuildingNumber 0..1<title>Description could show validation rules for example.</title></text>
+<text x="103em" y="49.8em" fill="seagreen">PostCode 0..1<title>Description could show validation rules for example.</title></text>
+<text x="103em" y="50.9em" fill="seagreen">TownName 0..1<title>Description could show validation rules for example.</title></text>
+<text x="103em" y="52em" fill="seagreen">CountrySubdivision 0..1<title>Description could show validation rules for example.</title></text>
+<text x="103em" y="53.099999999999994em" fill="seagreen">Country 0..1<title>Description could show validation rules for example.</title></text>
+<text x="103em" y="54.199999999999996em" fill="seagreen">AddressLine 0..7<title>Description could show validation rules for example.</title></text>
 
-<rect x="82em" y="54em" width="17em" height="4em" fill="azure" stroke="darkslategrey" stroke-width="2"/>
-<text style="font-weight:bold" text-anchor="middle" x="90.5em" y="55.3em" fill="darkslategrey">SupplementaryData<title></title></text>
+<rect x="82em" y="56em" width="27em" height="8em" fill="azure" stroke="darkslategrey" stroke-width="2"/>
+<text style="font-weight:bold" text-anchor="middle" x="95.5em" y="57.3em" fill="darkslategrey">DebtorAccount<title></title></text>
+<text x="83em" y="59.3em" fill="seagreen">SchemeName 1..1<title>Description could show validation rules for example.</title></text>
+<text x="83em" y="60.4em" fill="seagreen">Identification 1..1<title>Description could show validation rules for example.</title></text>
+<text x="83em" y="61.5em" fill="seagreen">Name 1..1<title>Description could show validation rules for example.</title></text>
+<text x="83em" y="62.599999999999994em" fill="seagreen">SecondaryIdentification 1..1<title>Description could show validation rules for example.</title></text>
 
-<rect x="28em" y="59em" width="34em" height="7em" fill="azure" stroke="darkslategrey" stroke-width="2"/>
-<text style="font-weight:bold" text-anchor="middle" x="45em" y="60.3em" fill="darkslategrey">RemittanceInformation<title></title></text>
-<text x="29em" y="62.3em" fill="seagreen">PaymentContextCode 0..1<title>Description could show validation rules for example.</title></text>
-<text x="29em" y="63.4em" fill="seagreen">MerchantCategoryCode 0..1<title>Description could show validation rules for example.</title></text>
-<text x="29em" y="64.5em" fill="seagreen">MerchantCustomerIdentification 0..1<title>Description could show validation rules for example.</title></text>
+<rect x="82em" y="65em" width="21em" height="6em" fill="azure" stroke="darkslategrey" stroke-width="2"/>
+<text style="font-weight:bold" text-anchor="middle" x="92.5em" y="66.3em" fill="darkslategrey">RemittanceInformation<title></title></text>
+<text x="83em" y="68.3em" fill="seagreen">Unstructured 0..1<title>Description could show validation rules for example.</title></text>
+<text x="83em" y="69.39999999999999em" fill="seagreen">Reference 0..1<title>Description could show validation rules for example.</title></text>
 
-<rect x="68em" y="59em" width="22em" height="11em" fill="azure" stroke="darkslategrey" stroke-width="2"/>
-<text style="font-weight:bold" text-anchor="middle" x="79em" y="60.3em" fill="darkslategrey">DeliveryAddress<title></title></text>
-<text x="69em" y="62.3em" fill="seagreen">AddressLine 0..2<title>Description could show validation rules for example.</title></text>
-<text x="69em" y="63.4em" fill="seagreen">StreetName 0..1<title>Description could show validation rules for example.</title></text>
-<text x="69em" y="64.5em" fill="seagreen">BuildingNumber 0..1<title>Description could show validation rules for example.</title></text>
-<text x="69em" y="65.6em" fill="seagreen">PostCode 0..1<title>Description could show validation rules for example.</title></text>
-<text x="69em" y="66.7em" fill="seagreen">TownName 0..1<title>Description could show validation rules for example.</title></text>
-<text x="69em" y="67.8em" fill="seagreen">CountrySubdivision 0..1<title>Description could show validation rules for example.</title></text>
-<text x="69em" y="68.89999999999999em" fill="seagreen">Country 0..1<title>Description could show validation rules for example.</title></text>
+<rect x="82em" y="72em" width="17em" height="4em" fill="azure" stroke="darkslategrey" stroke-width="2"/>
+<text style="font-weight:bold" text-anchor="middle" x="90.5em" y="73.3em" fill="darkslategrey">SupplementaryData<title></title></text>
+
+<rect x="28em" y="77em" width="34em" height="7em" fill="azure" stroke="darkslategrey" stroke-width="2"/>
+<text style="font-weight:bold" text-anchor="middle" x="45em" y="78.3em" fill="darkslategrey">RemittanceInformation<title></title></text>
+<text x="29em" y="80.3em" fill="seagreen">PaymentContextCode 0..1<title>Description could show validation rules for example.</title></text>
+<text x="29em" y="81.39999999999999em" fill="seagreen">MerchantCategoryCode 0..1<title>Description could show validation rules for example.</title></text>
+<text x="29em" y="82.5em" fill="seagreen">MerchantCustomerIdentification 0..1<title>Description could show validation rules for example.</title></text>
+
+<rect x="68em" y="77em" width="22em" height="11em" fill="azure" stroke="darkslategrey" stroke-width="2"/>
+<text style="font-weight:bold" text-anchor="middle" x="79em" y="78.3em" fill="darkslategrey">DeliveryAddress<title></title></text>
+<text x="69em" y="80.3em" fill="seagreen">AddressLine 0..2<title>Description could show validation rules for example.</title></text>
+<text x="69em" y="81.39999999999999em" fill="seagreen">StreetName 0..1<title>Description could show validation rules for example.</title></text>
+<text x="69em" y="82.5em" fill="seagreen">BuildingNumber 0..1<title>Description could show validation rules for example.</title></text>
+<text x="69em" y="83.6em" fill="seagreen">PostCode 0..1<title>Description could show validation rules for example.</title></text>
+<text x="69em" y="84.7em" fill="seagreen">TownName 0..1<title>Description could show validation rules for example.</title></text>
+<text x="69em" y="85.8em" fill="seagreen">CountrySubdivision 0..1<title>Description could show validation rules for example.</title></text>
+<text x="69em" y="86.89999999999999em" fill="seagreen">Country 0..1<title>Description could show validation rules for example.</title></text>
 
 <line x1="22em" y1="2em" x2="24em" y2="2em" stroke="darkslategrey" marker-start="url(#Diamond)"/>
 <line x1="24em" y1="2em" x2="24em" y2="2em" stroke="darkslategrey" />
@@ -117,27 +143,35 @@
 <line x1="78em" y1="2em" x2="78em" y2="27em" stroke="darkslategrey" />
 <line x1="78em" y1="27em" x2="81.2em" y2="27em" stroke="darkslategrey" marker-end="url(#Triangle)"/>
 <text x="78.5em" y="26.5em">1..1</text>
+<line x1="96em" y1="27em" x2="98em" y2="27em" stroke="darkslategrey" marker-start="url(#Diamond)"/>
+<line x1="98em" y1="27em" x2="98em" y2="27em" stroke="darkslategrey" />
+<line x1="98em" y1="27em" x2="101.2em" y2="27em" stroke="darkslategrey" marker-end="url(#Triangle)"/>
+<text x="98.5em" y="26.5em">1..1</text>
 <line x1="76em" y1="2em" x2="78em" y2="2em" stroke="darkslategrey" marker-start="url(#Diamond)"/>
-<line x1="78em" y1="2em" x2="78em" y2="33em" stroke="darkslategrey" />
-<line x1="78em" y1="33em" x2="81.2em" y2="33em" stroke="darkslategrey" marker-end="url(#Triangle)"/>
-<text x="78.5em" y="32.5em">1..1</text>
+<line x1="78em" y1="2em" x2="78em" y2="42em" stroke="darkslategrey" />
+<line x1="78em" y1="42em" x2="81.2em" y2="42em" stroke="darkslategrey" marker-end="url(#Triangle)"/>
+<text x="78.5em" y="41.5em">1..1</text>
+<line x1="96em" y1="42em" x2="98em" y2="42em" stroke="darkslategrey" marker-start="url(#Diamond)"/>
+<line x1="98em" y1="42em" x2="98em" y2="42em" stroke="darkslategrey" />
+<line x1="98em" y1="42em" x2="101.2em" y2="42em" stroke="darkslategrey" marker-end="url(#Triangle)"/>
+<text x="98.5em" y="41.5em">1..1</text>
 <line x1="76em" y1="2em" x2="78em" y2="2em" stroke="darkslategrey" marker-start="url(#Diamond)"/>
-<line x1="78em" y1="2em" x2="78em" y2="39em" stroke="darkslategrey" />
-<line x1="78em" y1="39em" x2="81.2em" y2="39em" stroke="darkslategrey" marker-end="url(#Triangle)"/>
-<text x="78.5em" y="38.5em">1..1</text>
+<line x1="78em" y1="2em" x2="78em" y2="57em" stroke="darkslategrey" />
+<line x1="78em" y1="57em" x2="81.2em" y2="57em" stroke="darkslategrey" marker-end="url(#Triangle)"/>
+<text x="78.5em" y="56.5em">1..1</text>
 <line x1="76em" y1="2em" x2="78em" y2="2em" stroke="darkslategrey" marker-start="url(#Diamond)"/>
-<line x1="78em" y1="2em" x2="78em" y2="48em" stroke="darkslategrey" />
-<line x1="78em" y1="48em" x2="81.2em" y2="48em" stroke="darkslategrey" marker-end="url(#Triangle)"/>
-<text x="78.5em" y="47.5em">1..1</text>
+<line x1="78em" y1="2em" x2="78em" y2="66em" stroke="darkslategrey" />
+<line x1="78em" y1="66em" x2="81.2em" y2="66em" stroke="darkslategrey" marker-end="url(#Triangle)"/>
+<text x="78.5em" y="65.5em">1..1</text>
 <line x1="76em" y1="2em" x2="78em" y2="2em" stroke="darkslategrey" marker-start="url(#Diamond)"/>
-<line x1="78em" y1="2em" x2="78em" y2="55em" stroke="darkslategrey" />
-<line x1="78em" y1="55em" x2="81.2em" y2="55em" stroke="darkslategrey" marker-end="url(#Triangle)"/>
-<text x="78.5em" y="54.5em">1..1</text>
+<line x1="78em" y1="2em" x2="78em" y2="73em" stroke="darkslategrey" />
+<line x1="78em" y1="73em" x2="81.2em" y2="73em" stroke="darkslategrey" marker-end="url(#Triangle)"/>
+<text x="78.5em" y="72.5em">1..1</text>
 <line x1="22em" y1="2em" x2="24em" y2="2em" stroke="darkslategrey" marker-start="url(#Diamond)"/>
-<line x1="24em" y1="2em" x2="24em" y2="60em" stroke="darkslategrey" />
-<line x1="24em" y1="60em" x2="27.2em" y2="60em" stroke="darkslategrey" marker-end="url(#Triangle)"/>
-<text x="24.5em" y="59.5em">1..1</text>
-<line x1="62em" y1="60em" x2="64em" y2="60em" stroke="darkslategrey" marker-start="url(#Diamond)"/>
-<line x1="64em" y1="60em" x2="64em" y2="60em" stroke="darkslategrey" />
-<line x1="64em" y1="60em" x2="67.2em" y2="60em" stroke="darkslategrey" marker-end="url(#Triangle)"/>
-<text x="64.5em" y="59.5em">1..1</text></svg>
+<line x1="24em" y1="2em" x2="24em" y2="78em" stroke="darkslategrey" />
+<line x1="24em" y1="78em" x2="27.2em" y2="78em" stroke="darkslategrey" marker-end="url(#Triangle)"/>
+<text x="24.5em" y="77.5em">1..1</text>
+<line x1="62em" y1="78em" x2="64em" y2="78em" stroke="darkslategrey" marker-start="url(#Diamond)"/>
+<line x1="64em" y1="78em" x2="64em" y2="78em" stroke="darkslategrey" />
+<line x1="64em" y1="78em" x2="67.2em" y2="78em" stroke="darkslategrey" marker-end="url(#Triangle)"/>
+<text x="64.5em" y="77.5em">1..1</text></svg>
