@@ -65,9 +65,11 @@ var (
 	PostalAddressCreditorAgent = PostalAddressCreditor
 
 	CreditorAgent = svg.Object{
-		Name: "Creditor",
+		Name: "CreditorAgent",
 		Properties: []svg.Property{
-			{Name: "SchemeName", Relationship: "1..1", Description: "Description could show validation rules for example."},
+			{Name: "SchemeName", Relationship: "0..1", Description: "Description could show validation rules for example."},
+			{Name: "Identification", Relationship: "0..1", Description: "Description could show validation rules for example."},
+			{Name: "Name", Relationship: "0..1", Description: "Description could show validation rules for example."},
 		},
 		ComposedOf: []svg.Composition{
 			{Relationship: "0..1", Object: &PostalAddressCreditorAgent},
@@ -77,7 +79,7 @@ var (
 	Creditor = svg.Object{
 		Name: "Creditor",
 		Properties: []svg.Property{
-			{Name: "SchemeName", Relationship: "1..1", Description: "Description could show validation rules for example."},
+			{Name: "Name", Relationship: "1..1", Description: "Description could show validation rules for example."},
 		},
 		ComposedOf: []svg.Composition{
 			{Relationship: "0..1", Object: &PostalAddressCreditor},
