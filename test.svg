@@ -1,0 +1,105 @@
+<?xml version="1.0" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" font-family="monospace" width="78em" height="45em"><defs>
+    <marker id="Triangle"
+      viewBox="0 0 10 10" refX="0" refY="5" 
+      markerUnits="strokeWidth"
+      markerWidth="15" markerHeight="10"
+      orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" />
+    </marker>
+    
+     <marker id="Diamond"
+      viewBox="0 0 16 10" refX="0" refY="5" 
+      markerUnits="strokeWidth"
+      markerWidth="20" markerHeight="10"
+      orient="auto">
+      <path d="M 0 5 L 8 10 L 16 5 L 8 0 z" />
+    </marker>   
+</defs>
+<rect x="1em" y="1em" width="14em" height="10em" fill="azure" stroke="darkslategrey" stroke-width="2"/>
+<text style="font-weight:bold" text-anchor="middle" x="8em" y="2.3em" fill="darkslategrey">o<title>test object o</title></text>
+<text x="2em" y="4.3em" fill="seagreen">someField0 1..1<title>test property field 0</title></text>
+<text x="2em" y="5.4em" fill="seagreen">someField1 1..1<title>test property field 1</title></text>
+<text x="2em" y="6.5em" fill="seagreen">someField2 1..1<title>test property field 2</title></text>
+<text x="2em" y="7.6em" fill="seagreen">someField3 1..1<title>test property field 3</title></text>
+<text x="2em" y="8.7em" fill="seagreen">someField4 1..1<title>test property field 4</title></text>
+<text x="2em" y="9.8em" fill="seagreen">someField5 1..1<title>test property field 5</title></text>
+
+<rect x="21em" y="1em" width="14em" height="10em" fill="azure" stroke="darkslategrey" stroke-width="2"/>
+<text style="font-weight:bold" text-anchor="middle" x="28em" y="2.3em" fill="darkslategrey">o1<title>test object o1</title></text>
+<text x="22em" y="4.3em" fill="seagreen">someField0 1..1<title>test property field 0</title></text>
+<text x="22em" y="5.4em" fill="seagreen">someField1 1..1<title>test property field 1</title></text>
+<text x="22em" y="6.5em" fill="seagreen">someField2 1..1<title>test property field 2</title></text>
+<text x="22em" y="7.6em" fill="seagreen">someField3 1..1<title>test property field 3</title></text>
+<text x="22em" y="8.7em" fill="seagreen">someField4 1..1<title>test property field 4</title></text>
+<text x="22em" y="9.8em" fill="seagreen">someField5 1..1<title>test property field 5</title></text>
+
+<rect x="41em" y="1em" width="14em" height="10em" fill="azure" stroke="darkslategrey" stroke-width="2"/>
+<text style="font-weight:bold" text-anchor="middle" x="48em" y="2.3em" fill="darkslategrey">o1_1<title>test object o1_1</title></text>
+<text x="42em" y="4.3em" fill="seagreen">someField0 1..1<title>test property field 0</title></text>
+<text x="42em" y="5.4em" fill="seagreen">someField1 1..1<title>test property field 1</title></text>
+<text x="42em" y="6.5em" fill="seagreen">someField2 1..1<title>test property field 2</title></text>
+<text x="42em" y="7.6em" fill="seagreen">someField3 1..1<title>test property field 3</title></text>
+<text x="42em" y="8.7em" fill="seagreen">someField4 1..1<title>test property field 4</title></text>
+<text x="42em" y="9.8em" fill="seagreen">someField5 1..1<title>test property field 5</title></text>
+
+<rect x="41em" y="12em" width="14em" height="10em" fill="azure" stroke="darkslategrey" stroke-width="2"/>
+<text style="font-weight:bold" text-anchor="middle" x="48em" y="13.3em" fill="darkslategrey">o1_2<title>test object o1_2</title></text>
+<text x="42em" y="15.3em" fill="seagreen">someField0 1..1<title>test property field 0</title></text>
+<text x="42em" y="16.400000000000002em" fill="seagreen">someField1 1..1<title>test property field 1</title></text>
+<text x="42em" y="17.5em" fill="seagreen">someField2 1..1<title>test property field 2</title></text>
+<text x="42em" y="18.6em" fill="seagreen">someField3 1..1<title>test property field 3</title></text>
+<text x="42em" y="19.700000000000003em" fill="seagreen">someField4 1..1<title>test property field 4</title></text>
+<text x="42em" y="20.8em" fill="seagreen">someField5 1..1<title>test property field 5</title></text>
+
+<rect x="61em" y="12em" width="14em" height="10em" fill="azure" stroke="darkslategrey" stroke-width="2"/>
+<text style="font-weight:bold" text-anchor="middle" x="68em" y="13.3em" fill="darkslategrey">o1_2_1<title>test object o1_2_1</title></text>
+<text x="62em" y="15.3em" fill="seagreen">someField0 1..1<title>test property field 0</title></text>
+<text x="62em" y="16.400000000000002em" fill="seagreen">someField1 1..1<title>test property field 1</title></text>
+<text x="62em" y="17.5em" fill="seagreen">someField2 1..1<title>test property field 2</title></text>
+<text x="62em" y="18.6em" fill="seagreen">someField3 1..1<title>test property field 3</title></text>
+<text x="62em" y="19.700000000000003em" fill="seagreen">someField4 1..1<title>test property field 4</title></text>
+<text x="62em" y="20.8em" fill="seagreen">someField5 1..1<title>test property field 5</title></text>
+
+<rect x="61em" y="23em" width="14em" height="10em" fill="azure" stroke="darkslategrey" stroke-width="2"/>
+<text style="font-weight:bold" text-anchor="middle" x="68em" y="24.3em" fill="darkslategrey">o1_2_2<title>test object o1_2_2</title></text>
+<text x="62em" y="26.3em" fill="seagreen">someField0 1..1<title>test property field 0</title></text>
+<text x="62em" y="27.400000000000002em" fill="seagreen">someField1 1..1<title>test property field 1</title></text>
+<text x="62em" y="28.5em" fill="seagreen">someField2 1..1<title>test property field 2</title></text>
+<text x="62em" y="29.6em" fill="seagreen">someField3 1..1<title>test property field 3</title></text>
+<text x="62em" y="30.700000000000003em" fill="seagreen">someField4 1..1<title>test property field 4</title></text>
+<text x="62em" y="31.8em" fill="seagreen">someField5 1..1<title>test property field 5</title></text>
+
+<rect x="21em" y="34em" width="14em" height="10em" fill="azure" stroke="darkslategrey" stroke-width="2"/>
+<text style="font-weight:bold" text-anchor="middle" x="28em" y="35.3em" fill="darkslategrey">o2<title>test object o2</title></text>
+<text x="22em" y="37.3em" fill="seagreen">someField0 1..1<title>test property field 0</title></text>
+<text x="22em" y="38.4em" fill="seagreen">someField1 1..1<title>test property field 1</title></text>
+<text x="22em" y="39.5em" fill="seagreen">someField2 1..1<title>test property field 2</title></text>
+<text x="22em" y="40.599999999999994em" fill="seagreen">someField3 1..1<title>test property field 3</title></text>
+<text x="22em" y="41.699999999999996em" fill="seagreen">someField4 1..1<title>test property field 4</title></text>
+<text x="22em" y="42.8em" fill="seagreen">someField5 1..1<title>test property field 5</title></text>
+
+<line x1="15em" y1="2em" x2="17em" y2="2em" stroke="darkslategrey" marker-start="url(#Diamond)"/>
+<line x1="17em" y1="2em" x2="17em" y2="2em" stroke="darkslategrey" />
+<line x1="17em" y1="2em" x2="20.2em" y2="2em" stroke="darkslategrey" marker-end="url(#Triangle)"/>
+<text x="17.5em" y="1.5em">1..1</text>
+<line x1="35em" y1="2em" x2="37em" y2="2em" stroke="darkslategrey" marker-start="url(#Diamond)"/>
+<line x1="37em" y1="2em" x2="37em" y2="2em" stroke="darkslategrey" />
+<line x1="37em" y1="2em" x2="40.2em" y2="2em" stroke="darkslategrey" marker-end="url(#Triangle)"/>
+<text x="37.5em" y="1.5em">1..1</text>
+<line x1="35em" y1="2em" x2="37em" y2="2em" stroke="darkslategrey" marker-start="url(#Diamond)"/>
+<line x1="37em" y1="2em" x2="37em" y2="13em" stroke="darkslategrey" />
+<line x1="37em" y1="13em" x2="40.2em" y2="13em" stroke="darkslategrey" marker-end="url(#Triangle)"/>
+<text x="37.5em" y="12.5em">1..1</text>
+<line x1="55em" y1="13em" x2="57em" y2="13em" stroke="darkslategrey" marker-start="url(#Diamond)"/>
+<line x1="57em" y1="13em" x2="57em" y2="13em" stroke="darkslategrey" />
+<line x1="57em" y1="13em" x2="60.2em" y2="13em" stroke="darkslategrey" marker-end="url(#Triangle)"/>
+<text x="57.5em" y="12.5em">1..1</text>
+<line x1="55em" y1="13em" x2="57em" y2="13em" stroke="darkslategrey" marker-start="url(#Diamond)"/>
+<line x1="57em" y1="13em" x2="57em" y2="24em" stroke="darkslategrey" />
+<line x1="57em" y1="24em" x2="60.2em" y2="24em" stroke="darkslategrey" marker-end="url(#Triangle)"/>
+<text x="57.5em" y="23.5em">1..1</text>
+<line x1="15em" y1="2em" x2="17em" y2="2em" stroke="darkslategrey" marker-start="url(#Diamond)"/>
+<line x1="17em" y1="2em" x2="17em" y2="35em" stroke="darkslategrey" />
+<line x1="17em" y1="35em" x2="20.2em" y2="35em" stroke="darkslategrey" marker-end="url(#Triangle)"/>
+<text x="17.5em" y="34.5em">1..1</text></svg>
