@@ -66,7 +66,7 @@ func (o *Object) NamePosition() Position {
 func (o *Object) FieldPosition(n int) Position {
 	return Position{
 		o.Position.X + 1.0,
-		o.NamePosition().Y + 2.0 + float64(n)*1.1,
+		o.NamePosition().Y + 2.0 + float64(n)*1.3,
 	}
 }
 
@@ -87,16 +87,16 @@ func (o *Object) ConnectorOutPosition() Position {
 func (o *Object) Width() float64 {
 	w := len(o.Name)
 	for _, p := range o.Properties {
-		l := len(p.Name) + len(p.Relationship)
+		l := len(p.Name) + len(p.Relationship) + 3
 		if l > w {
 			w = l
 		}
 	}
-	return float64(w)
+	return float64(w) * 0.8 // for some reason boxes are too wide by default
 }
 
 func (o *Object) Height() float64 {
-	return float64(len(o.Properties) + 4) // name, line between name and properties, properties, frames
+	return float64(len(o.Properties))*1.3 + 3.0 // name, line between name and properties, properties, frames
 }
 
 // returns the total width of the tree

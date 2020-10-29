@@ -40,7 +40,7 @@ var (
 	objectTemplate = fmt.Sprintf(`
 <rect x="{{.Position.X}}em" y="{{.Position.Y}}em" width="{{.Width}}em" height="{{.Height}}em" fill="%s" stroke="%s" stroke-width="2"/>
 <text style="font-weight:bold" text-anchor="middle" x="{{.NamePosition.X}}em" y="{{.NamePosition.Y}}em" fill="%s">{{.Name}}<title>{{.Description}}</title></text>
-{{range $i, $prop := .Properties}}<text x="{{($.FieldPosition $i).X}}em" y="{{($.FieldPosition $i).Y}}em" fill="%s">{{.Name}} {{.Relationship}}<title>{{.Description}}</title></text>
+{{range $i, $prop := .Properties}}<text x="{{($.FieldPosition $i).X}}em" y="{{($.FieldPosition $i).Y}}em" fill="%s">{{.Name}} [{{.Relationship}}]<title>{{.Description}}</title></text>
 {{end}}`, objectFillColor, strokeColor, strokeColor, propertyColor)
 
 	connectorTemplate = `
