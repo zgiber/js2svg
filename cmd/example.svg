@@ -1,0 +1,143 @@
+<?xml version="1.0" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" font-family="monospace" width="112em" height="71em"><defs>
+    <marker id="Triangle"
+      viewBox="0 0 10 10" refX="0" refY="5" 
+      markerUnits="strokeWidth"
+      markerWidth="15" markerHeight="10"
+      orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" />
+    </marker>
+    
+     <marker id="Diamond"
+      viewBox="0 0 16 10" refX="0" refY="5" 
+      markerUnits="strokeWidth"
+      markerWidth="20" markerHeight="10"
+      orient="auto">
+      <path d="M 0 5 L 8 10 L 16 5 L 8 0 z" />
+    </marker>   
+</defs>
+<rect x="1em" y="1em" width="21em" height="4em" fill="azure" stroke="darkslategrey" stroke-width="2"/>
+<text style="font-weight:bold" text-anchor="middle" x="11.5em" y="2.3em" fill="darkslategrey">OBWriteInternational3<title>The response object for xxx call... whatever</title></text>
+
+<rect x="28em" y="1em" width="13em" height="5em" fill="azure" stroke="darkslategrey" stroke-width="2"/>
+<text style="font-weight:bold" text-anchor="middle" x="34.5em" y="2.3em" fill="darkslategrey">Data<title></title></text>
+<text x="29em" y="4.3em" fill="seagreen">ConsentId 1..1<title>The ID of the PSU consent for this operation.</title></text>
+
+<rect x="47em" y="1em" width="29em" height="13em" fill="azure" stroke="darkslategrey" stroke-width="2"/>
+<text style="font-weight:bold" text-anchor="middle" x="61.5em" y="2.3em" fill="darkslategrey">Initiation<title></title></text>
+<text x="48em" y="4.3em" fill="seagreen">InstructionIdentification 1..1<title>Description could show type and validation rules for example.</title></text>
+<text x="48em" y="5.4em" fill="seagreen">EndToEndIdentification 1..1<title></title></text>
+<text x="48em" y="6.5em" fill="seagreen">LocalInstrument 1..0<title></title></text>
+<text x="48em" y="7.6em" fill="seagreen">InstructionPriority 1..0<title></title></text>
+<text x="48em" y="8.7em" fill="seagreen">Purpose 1..0<title></title></text>
+<text x="48em" y="9.8em" fill="seagreen">ExtendedPurpose 1..0<title></title></text>
+<text x="48em" y="10.9em" fill="seagreen">ChargeBearer 1..0<title></title></text>
+<text x="48em" y="12em" fill="seagreen">CurrencyOfTransfer 1..0<title></title></text>
+<text x="48em" y="13.100000000000001em" fill="seagreen">DestinationCountryCode 1..0<title></title></text>
+
+<rect x="82em" y="1em" width="16em" height="6em" fill="azure" stroke="darkslategrey" stroke-width="2"/>
+<text style="font-weight:bold" text-anchor="middle" x="90em" y="2.3em" fill="darkslategrey">InstructedAmount<title></title></text>
+<text x="83em" y="4.3em" fill="seagreen">Amount 1..1<title>Description could show validation rules for example.</title></text>
+<text x="83em" y="5.4em" fill="seagreen">Currency 1..1<title>Description could show validation rules for example.</title></text>
+
+<rect x="82em" y="8em" width="26em" height="8em" fill="azure" stroke="darkslategrey" stroke-width="2"/>
+<text style="font-weight:bold" text-anchor="middle" x="95em" y="9.3em" fill="darkslategrey">ExchangeRateInformation<title></title></text>
+<text x="83em" y="11.3em" fill="seagreen">UnitCurrency 1..1<title>Description could show validation rules for example.</title></text>
+<text x="83em" y="12.4em" fill="seagreen">ExchangeRate 1..1<title>Description could show validation rules for example.</title></text>
+<text x="83em" y="13.5em" fill="seagreen">RateType 1..1<title>Description could show validation rules for example.</title></text>
+<text x="83em" y="14.600000000000001em" fill="seagreen">ContractIdentification 1..1<title>Description could show validation rules for example.</title></text>
+
+<rect x="82em" y="17em" width="27em" height="8em" fill="azure" stroke="darkslategrey" stroke-width="2"/>
+<text style="font-weight:bold" text-anchor="middle" x="95.5em" y="18.3em" fill="darkslategrey">DebtorAccount<title></title></text>
+<text x="83em" y="20.3em" fill="seagreen">SchemeName 1..1<title>Description could show validation rules for example.</title></text>
+<text x="83em" y="21.400000000000002em" fill="seagreen">Identification 1..1<title>Description could show validation rules for example.</title></text>
+<text x="83em" y="22.5em" fill="seagreen">Name 1..1<title>Description could show validation rules for example.</title></text>
+<text x="83em" y="23.6em" fill="seagreen">SecondaryIdentification 1..1<title>Description could show validation rules for example.</title></text>
+
+<rect x="82em" y="26em" width="14em" height="5em" fill="azure" stroke="darkslategrey" stroke-width="2"/>
+<text style="font-weight:bold" text-anchor="middle" x="89em" y="27.3em" fill="darkslategrey">Creditor<title></title></text>
+<text x="83em" y="29.3em" fill="seagreen">SchemeName 1..1<title>Description could show validation rules for example.</title></text>
+
+<rect x="82em" y="32em" width="14em" height="5em" fill="azure" stroke="darkslategrey" stroke-width="2"/>
+<text style="font-weight:bold" text-anchor="middle" x="89em" y="33.3em" fill="darkslategrey">Creditor<title></title></text>
+<text x="83em" y="35.3em" fill="seagreen">SchemeName 1..1<title>Description could show validation rules for example.</title></text>
+
+<rect x="82em" y="38em" width="27em" height="8em" fill="azure" stroke="darkslategrey" stroke-width="2"/>
+<text style="font-weight:bold" text-anchor="middle" x="95.5em" y="39.3em" fill="darkslategrey">DebtorAccount<title></title></text>
+<text x="83em" y="41.3em" fill="seagreen">SchemeName 1..1<title>Description could show validation rules for example.</title></text>
+<text x="83em" y="42.4em" fill="seagreen">Identification 1..1<title>Description could show validation rules for example.</title></text>
+<text x="83em" y="43.5em" fill="seagreen">Name 1..1<title>Description could show validation rules for example.</title></text>
+<text x="83em" y="44.599999999999994em" fill="seagreen">SecondaryIdentification 1..1<title>Description could show validation rules for example.</title></text>
+
+<rect x="82em" y="47em" width="21em" height="6em" fill="azure" stroke="darkslategrey" stroke-width="2"/>
+<text style="font-weight:bold" text-anchor="middle" x="92.5em" y="48.3em" fill="darkslategrey">RemittanceInformation<title></title></text>
+<text x="83em" y="50.3em" fill="seagreen">Unstructured 0..1<title>Description could show validation rules for example.</title></text>
+<text x="83em" y="51.4em" fill="seagreen">Reference 0..1<title>Description could show validation rules for example.</title></text>
+
+<rect x="82em" y="54em" width="17em" height="4em" fill="azure" stroke="darkslategrey" stroke-width="2"/>
+<text style="font-weight:bold" text-anchor="middle" x="90.5em" y="55.3em" fill="darkslategrey">SupplementaryData<title></title></text>
+
+<rect x="28em" y="59em" width="34em" height="7em" fill="azure" stroke="darkslategrey" stroke-width="2"/>
+<text style="font-weight:bold" text-anchor="middle" x="45em" y="60.3em" fill="darkslategrey">RemittanceInformation<title></title></text>
+<text x="29em" y="62.3em" fill="seagreen">PaymentContextCode 0..1<title>Description could show validation rules for example.</title></text>
+<text x="29em" y="63.4em" fill="seagreen">MerchantCategoryCode 0..1<title>Description could show validation rules for example.</title></text>
+<text x="29em" y="64.5em" fill="seagreen">MerchantCustomerIdentification 0..1<title>Description could show validation rules for example.</title></text>
+
+<rect x="68em" y="59em" width="22em" height="11em" fill="azure" stroke="darkslategrey" stroke-width="2"/>
+<text style="font-weight:bold" text-anchor="middle" x="79em" y="60.3em" fill="darkslategrey">DeliveryAddress<title></title></text>
+<text x="69em" y="62.3em" fill="seagreen">AddressLine 0..2<title>Description could show validation rules for example.</title></text>
+<text x="69em" y="63.4em" fill="seagreen">StreetName 0..1<title>Description could show validation rules for example.</title></text>
+<text x="69em" y="64.5em" fill="seagreen">BuildingNumber 0..1<title>Description could show validation rules for example.</title></text>
+<text x="69em" y="65.6em" fill="seagreen">PostCode 0..1<title>Description could show validation rules for example.</title></text>
+<text x="69em" y="66.7em" fill="seagreen">TownName 0..1<title>Description could show validation rules for example.</title></text>
+<text x="69em" y="67.8em" fill="seagreen">CountrySubdivision 0..1<title>Description could show validation rules for example.</title></text>
+<text x="69em" y="68.89999999999999em" fill="seagreen">Country 0..1<title>Description could show validation rules for example.</title></text>
+
+<line x1="22em" y1="2em" x2="24em" y2="2em" stroke="darkslategrey" marker-start="url(#Diamond)"/>
+<line x1="24em" y1="2em" x2="24em" y2="2em" stroke="darkslategrey" />
+<line x1="24em" y1="2em" x2="27.2em" y2="2em" stroke="darkslategrey" marker-end="url(#Triangle)"/>
+<text x="24.5em" y="1.5em">1..1</text>
+<line x1="41em" y1="2em" x2="43em" y2="2em" stroke="darkslategrey" marker-start="url(#Diamond)"/>
+<line x1="43em" y1="2em" x2="43em" y2="2em" stroke="darkslategrey" />
+<line x1="43em" y1="2em" x2="46.2em" y2="2em" stroke="darkslategrey" marker-end="url(#Triangle)"/>
+<text x="43.5em" y="1.5em">1..1</text>
+<line x1="76em" y1="2em" x2="78em" y2="2em" stroke="darkslategrey" marker-start="url(#Diamond)"/>
+<line x1="78em" y1="2em" x2="78em" y2="2em" stroke="darkslategrey" />
+<line x1="78em" y1="2em" x2="81.2em" y2="2em" stroke="darkslategrey" marker-end="url(#Triangle)"/>
+<text x="78.5em" y="1.5em">1..1</text>
+<line x1="76em" y1="2em" x2="78em" y2="2em" stroke="darkslategrey" marker-start="url(#Diamond)"/>
+<line x1="78em" y1="2em" x2="78em" y2="9em" stroke="darkslategrey" />
+<line x1="78em" y1="9em" x2="81.2em" y2="9em" stroke="darkslategrey" marker-end="url(#Triangle)"/>
+<text x="78.5em" y="8.5em">1..1</text>
+<line x1="76em" y1="2em" x2="78em" y2="2em" stroke="darkslategrey" marker-start="url(#Diamond)"/>
+<line x1="78em" y1="2em" x2="78em" y2="18em" stroke="darkslategrey" />
+<line x1="78em" y1="18em" x2="81.2em" y2="18em" stroke="darkslategrey" marker-end="url(#Triangle)"/>
+<text x="78.5em" y="17.5em">1..1</text>
+<line x1="76em" y1="2em" x2="78em" y2="2em" stroke="darkslategrey" marker-start="url(#Diamond)"/>
+<line x1="78em" y1="2em" x2="78em" y2="27em" stroke="darkslategrey" />
+<line x1="78em" y1="27em" x2="81.2em" y2="27em" stroke="darkslategrey" marker-end="url(#Triangle)"/>
+<text x="78.5em" y="26.5em">1..1</text>
+<line x1="76em" y1="2em" x2="78em" y2="2em" stroke="darkslategrey" marker-start="url(#Diamond)"/>
+<line x1="78em" y1="2em" x2="78em" y2="33em" stroke="darkslategrey" />
+<line x1="78em" y1="33em" x2="81.2em" y2="33em" stroke="darkslategrey" marker-end="url(#Triangle)"/>
+<text x="78.5em" y="32.5em">1..1</text>
+<line x1="76em" y1="2em" x2="78em" y2="2em" stroke="darkslategrey" marker-start="url(#Diamond)"/>
+<line x1="78em" y1="2em" x2="78em" y2="39em" stroke="darkslategrey" />
+<line x1="78em" y1="39em" x2="81.2em" y2="39em" stroke="darkslategrey" marker-end="url(#Triangle)"/>
+<text x="78.5em" y="38.5em">1..1</text>
+<line x1="76em" y1="2em" x2="78em" y2="2em" stroke="darkslategrey" marker-start="url(#Diamond)"/>
+<line x1="78em" y1="2em" x2="78em" y2="48em" stroke="darkslategrey" />
+<line x1="78em" y1="48em" x2="81.2em" y2="48em" stroke="darkslategrey" marker-end="url(#Triangle)"/>
+<text x="78.5em" y="47.5em">1..1</text>
+<line x1="76em" y1="2em" x2="78em" y2="2em" stroke="darkslategrey" marker-start="url(#Diamond)"/>
+<line x1="78em" y1="2em" x2="78em" y2="55em" stroke="darkslategrey" />
+<line x1="78em" y1="55em" x2="81.2em" y2="55em" stroke="darkslategrey" marker-end="url(#Triangle)"/>
+<text x="78.5em" y="54.5em">1..1</text>
+<line x1="22em" y1="2em" x2="24em" y2="2em" stroke="darkslategrey" marker-start="url(#Diamond)"/>
+<line x1="24em" y1="2em" x2="24em" y2="60em" stroke="darkslategrey" />
+<line x1="24em" y1="60em" x2="27.2em" y2="60em" stroke="darkslategrey" marker-end="url(#Triangle)"/>
+<text x="24.5em" y="59.5em">1..1</text>
+<line x1="62em" y1="60em" x2="64em" y2="60em" stroke="darkslategrey" marker-start="url(#Diamond)"/>
+<line x1="64em" y1="60em" x2="64em" y2="60em" stroke="darkslategrey" />
+<line x1="64em" y1="60em" x2="67.2em" y2="60em" stroke="darkslategrey" marker-end="url(#Triangle)"/>
+<text x="64.5em" y="59.5em">1..1</text></svg>

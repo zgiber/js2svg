@@ -52,18 +52,18 @@ var (
 
 // Diagram ...
 type Diagram struct {
-	root *object
+	Root *Object
 }
 
 // Render ...
 func (d *Diagram) Render(dst io.Writer) error {
 	// recalculate child positions
-	d.root.Position.X = 1 // 1em margin
-	d.root.Position.Y = 1 //
-	d.root.calculateChildPositions()
+	d.Root.Position.X = 1 // 1em margin
+	d.Root.Position.Y = 1 //
+	d.Root.calculateChildPositions()
 
 	// write the header
-	h := fmt.Sprintf(headers, d.root.totalWidth(), d.root.totalHeight()+1.0) // add 1em margin on the bottom
+	h := fmt.Sprintf(headers, d.Root.totalWidth(), d.Root.totalHeight()+1.0) // add 1em margin on the bottom
 	_, err := dst.Write([]byte(h))
 	if err != nil {
 		return err
@@ -76,16 +76,16 @@ func (d *Diagram) Render(dst io.Writer) error {
 	}
 
 	// render the objects
-	if err := renderObject(dst, d.root); err != nil {
+	if err := renderObject(dst, d.Root); err != nil {
 		return err
 	}
 
-	if err := renderChildObjects(dst, d.root); err != nil {
+	if err := renderChildObjects(dst, d.Root); err != nil {
 		return err
 	}
 
 	// render the connections
-	if err := renderConnections(dst, d.root); err != nil {
+	if err := renderConnections(dst, d.Root); err != nil {
 		return err
 	}
 
@@ -94,14 +94,14 @@ func (d *Diagram) Render(dst io.Writer) error {
 }
 
 type line struct {
-	Start position
-	Stop  position
+	Start Position
+	Stop  Position
 }
 
-func renderConnection(dst io.Writer, from, to *object) error {
+func renderConnection(dst io.Writer, from, to *Object) error {
 	functions := template.FuncMap(map[string]interface{}{
-		"textPosition": func() position {
-			return position{
+		"textPosition": func() Position {
+			return Position{
 				X: to.Position.X - 3.5,
 				Y: to.Position.Y + 0.5,
 			}
@@ -109,10 +109,10 @@ func renderConnection(dst io.Writer, from, to *object) error {
 	})
 
 	// segment points
-	sp1 := position{from.Position.X + from.Width(), from.Position.Y + 1.0}
-	sp2 := position{sp1.X + 2, sp1.Y}
-	sp3 := position{sp2.X, to.Position.Y + 1.0}
-	sp4 := position{to.Position.X - 0.8, sp3.Y}
+	sp1 := Position{from.Position.X + from.Width(), from.Position.Y + 1.0}
+	sp2 := Position{sp1.X + 2, sp1.Y}
+	sp3 := Position{sp2.X, to.Position.Y + 1.0}
+	sp4 := Position{to.Position.X - 0.8, sp3.Y}
 
 	lines := []line{
 		{sp1, sp2},
@@ -131,7 +131,7 @@ func renderConnection(dst io.Writer, from, to *object) error {
 	return nil
 }
 
-func renderObject(dst io.Writer, o *object) error {
+func renderObject(dst io.Writer, o *Object) error {
 	tmpl, err := template.New("object").Parse(objectTemplate)
 	if err != nil {
 		return err
@@ -143,8 +143,8 @@ func renderObject(dst io.Writer, o *object) error {
 	return nil
 }
 
-func renderChildObjects(dst io.Writer, o *object) error {
-	for _, c := range o.composedOf {
+func renderChildObjects(dst io.Writer, o *Object) error {
+	for _, c := range o.ComposedOf {
 		if err := renderObject(dst, c.Object); err != nil {
 			return err
 		}
@@ -156,8 +156,8 @@ func renderChildObjects(dst io.Writer, o *object) error {
 	return nil
 }
 
-func renderConnections(dst io.Writer, o *object) error {
-	for _, c := range o.composedOf {
+func renderConnections(dst io.Writer, o *Object) error {
+	for _, c := range o.ComposedOf {
 		// this connection
 		renderConnection(dst, o, c.Object)
 		// child's connections

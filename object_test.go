@@ -19,17 +19,17 @@ func TestObjectDimensions(t *testing.T) {
 	o1_2_2 := testObject("o1_2_2", 10)
 	o2 := testObject("o2", 10)
 
-	o1_2.composedOf = []composition{
+	o1_2.ComposedOf = []Composition{
 		{Object: o1_2_1},
 		{Object: o1_2_2},
 	}
 
-	o1.composedOf = []composition{
+	o1.ComposedOf = []Composition{
 		{Object: o1_1, Relationship: "1..1"},
 		{Object: o1_2, Relationship: "1..1"},
 	}
 
-	o.composedOf = []composition{
+	o.ComposedOf = []Composition{
 		{Object: o1, Relationship: "1..1"},
 		{Object: o2, Relationship: "1..1"},
 	}
@@ -40,7 +40,7 @@ func TestObjectDimensions(t *testing.T) {
 	}
 	defer dst.Close()
 
-	d := Diagram{root: o}
+	d := Diagram{Root: o}
 	err = d.Render(dst)
 	assert.NoError(t, err)
 
@@ -61,10 +61,10 @@ func TestParsing(t *testing.T) {
 }
 
 // the returned object will be at least w=name and h=4
-func testObject(name string, h int) *object {
-	o := object{Name: name, Description: fmt.Sprintf("test object %s", name)}
+func testObject(name string, h int) *Object {
+	o := Object{Name: name, Description: fmt.Sprintf("test object %s", name)}
 	for i := 0; i < h-4; i++ {
-		o.Properties = append(o.Properties, property{Name: fmt.Sprintf("someField%v", i), Description: fmt.Sprintf("test property field %v", i), Relationship: "1..1"})
+		o.Properties = append(o.Properties, Property{Name: fmt.Sprintf("someField%v", i), Description: fmt.Sprintf("test property field %v", i), Relationship: "1..1"})
 	}
 	return &o
 }

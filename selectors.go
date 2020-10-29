@@ -1,7 +1,6 @@
 package js2svg
 
 import (
-	"fmt"
 	"io"
 	"io/ioutil"
 	"strconv"
@@ -10,23 +9,20 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
-func unmarshalSrc(src io.Reader) (map[string]interface{}, error) {
-	container := map[string]interface{}{}
+func unmarshalSrc(src io.Reader) (container, error) {
+	dst := map[string]interface{}{}
 	srcBody, err := ioutil.ReadAll(src)
 	if err != nil {
 		return nil, err
 	}
 
-	if err := yaml.Unmarshal(srcBody, &container); err != nil {
+	if err := yaml.Unmarshal(srcBody, &dst); err != nil {
 		return nil, err
 	}
 
-	return container, nil
+	return dst, nil
 }
-func getUnknown(m map[string]interface{}, key string, v ...string) interface{} {
-	if len(v) > 0 {
-		key = fmt.Sprintf(key, v)
-	}
+func getUnknown(m map[string]interface{}, key string) interface{} {
 	fieldValue, found := getField(m, key)
 	if !found {
 		return nil
@@ -35,10 +31,7 @@ func getUnknown(m map[string]interface{}, key string, v ...string) interface{} {
 	return fieldValue
 }
 
-func getString(m map[string]interface{}, key string, v ...string) string {
-	if len(v) > 0 {
-		key = fmt.Sprintf(key, v)
-	}
+func getString(m map[string]interface{}, key string) string {
 	fieldValue, _ := getField(m, key)
 	if stringValue, ok := fieldValue.(string); ok {
 		return stringValue
@@ -47,10 +40,7 @@ func getString(m map[string]interface{}, key string, v ...string) string {
 	return ""
 }
 
-func getNumber(m map[string]interface{}, key string, v ...string) float64 {
-	if len(v) > 0 {
-		key = fmt.Sprintf(key, v)
-	}
+func getNumber(m map[string]interface{}, key string) float64 {
 	fieldValue, _ := getField(m, key)
 	if number, ok := fieldValue.(float64); ok {
 		return number
@@ -59,10 +49,7 @@ func getNumber(m map[string]interface{}, key string, v ...string) float64 {
 	return 0.0
 }
 
-func getSlice(m map[string]interface{}, key string, v ...string) []interface{} {
-	if len(v) > 0 {
-		key = fmt.Sprintf(key, v)
-	}
+func getSlice(m map[string]interface{}, key string) []interface{} {
 	fieldValue, _ := getField(m, key)
 	if slice, ok := fieldValue.([]interface{}); ok {
 		return slice
@@ -71,11 +58,7 @@ func getSlice(m map[string]interface{}, key string, v ...string) []interface{} {
 	return []interface{}{}
 }
 
-func getObject(m map[string]interface{}, key string, v ...string) map[string]interface{} {
-	if len(v) > 0 {
-		key = fmt.Sprintf(key, v)
-	}
-
+func getObject(m map[string]interface{}, key string) map[string]interface{} {
 	fieldValue, _ := getField(m, key)
 	if obj, ok := fieldValue.(map[string]interface{}); ok {
 		return obj
