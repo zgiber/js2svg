@@ -41,13 +41,14 @@ func TestObjectDimensions(t *testing.T) {
 }
 
 func TestParsing(t *testing.T) {
+	// not a real test either...
 	f, err := os.Open("example.yaml")
 	if err != nil {
 		t.Fatal(err)
 	}
 	defer f.Close()
 
-	d, err := GenerateDiagram(f, "components.schemas.OBReadStandingOrder6")
+	d, err := ParseToDiagram(f, "components.schemas.OBStandingOrder6Basic")
 	if err != nil {
 		t.Fatal(err)
 	}

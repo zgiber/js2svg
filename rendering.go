@@ -50,12 +50,12 @@ var (
 <text x="{{textPosition.X}}em" y="{{textPosition.Y}}em">{{relationship}}</text>`
 )
 
-// Diagram ...
+// Diagram to be rendered
 type Diagram struct {
 	Root *Object
 }
 
-// Render ...
+// Render the diagram writing the SVG document on the dst
 func (d *Diagram) Render(dst io.Writer) error {
 	// recalculate child positions
 	d.Root.Position.X = 1 // 1em margin

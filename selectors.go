@@ -9,7 +9,7 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
-func unmarshalSrc(src io.Reader) (container, error) {
+func unmarshalSrc(src io.Reader) (map[string]interface{}, error) {
 	dst := map[string]interface{}{}
 	srcBody, err := ioutil.ReadAll(src)
 	if err != nil {
@@ -22,7 +22,8 @@ func unmarshalSrc(src io.Reader) (container, error) {
 
 	return dst, nil
 }
-func getUnknown(m map[string]interface{}, key string) interface{} {
+
+func GetUnknown(m map[string]interface{}, key string) interface{} {
 	fieldValue, found := getField(m, key)
 	if !found {
 		return nil
@@ -31,7 +32,7 @@ func getUnknown(m map[string]interface{}, key string) interface{} {
 	return fieldValue
 }
 
-func getString(m map[string]interface{}, key string) string {
+func GetString(m map[string]interface{}, key string) string {
 	fieldValue, _ := getField(m, key)
 	if stringValue, ok := fieldValue.(string); ok {
 		return stringValue
@@ -40,7 +41,7 @@ func getString(m map[string]interface{}, key string) string {
 	return ""
 }
 
-func getNumber(m map[string]interface{}, key string) float64 {
+func GetNumber(m map[string]interface{}, key string) float64 {
 	fieldValue, _ := getField(m, key)
 	if number, ok := fieldValue.(float64); ok {
 		return number
@@ -49,7 +50,7 @@ func getNumber(m map[string]interface{}, key string) float64 {
 	return 0.0
 }
 
-func getSlice(m map[string]interface{}, key string) []interface{} {
+func GetSlice(m map[string]interface{}, key string) []interface{} {
 	fieldValue, _ := getField(m, key)
 	if slice, ok := fieldValue.([]interface{}); ok {
 		return slice
@@ -58,7 +59,7 @@ func getSlice(m map[string]interface{}, key string) []interface{} {
 	return []interface{}{}
 }
 
-func getObject(m map[string]interface{}, key string) map[string]interface{} {
+func GetObject(m map[string]interface{}, key string) map[string]interface{} {
 	fieldValue, _ := getField(m, key)
 	if obj, ok := fieldValue.(map[string]interface{}); ok {
 		return obj

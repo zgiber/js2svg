@@ -15,7 +15,7 @@ import (
 func main() {
 	app := &cli.App{
 		Action: run,
-		Name:   "js2svg",
+		Name:   "generate", // TODO: give this a good name
 		Usage:  "Generate SVG diagrams for JSON Schema objects",
 		Flags: []cli.Flag{
 			&cli.StringFlag{
@@ -63,7 +63,7 @@ func run(ctx *cli.Context) error {
 	}
 	defer src.Close()
 
-	d, err := js2svg.GenerateDiagram(src, ctx.String("path"))
+	d, err := js2svg.ParseToDiagram(src, ctx.String("path"))
 	if err != nil {
 		return err
 	}

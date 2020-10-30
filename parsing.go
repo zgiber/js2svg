@@ -7,38 +7,18 @@ import (
 	"strings"
 )
 
-type container map[string]interface{}
+var (
+	// ExternalDivider can be set to custom character in places where . is escaped
+	ExternalDivider = "."
+	internalDivider = "."
+)
 
-// GenerateDiagram ...
-func GenerateDiagram(src io.Reader, objectPath string) (*Diagram, error) {
-	c, err := unmarshalSrc(src)
-	if err != nil {
-		return nil, err
-	}
-
-	// resolve $ref items and replace them with the actual definitions
-	resolved, err := c.resolveReferences(objectPath)
-	if err != nil {
-		return nil, err
-	}
-
-	// debug - seems ok...
-	// b, err := json.MarshalIndent(resolved, "", "  ")
-	// if err != nil {
-	// return nil, err
-	// }
-	// fmt.Println(string(b))
-
-	// expect the top level item to be an object (vs. array or scalar)
-	var ok bool
-	c, ok = resolved.(map[string]interface{})
-	if !ok {
-		return nil, fmt.Errorf("src is not an object")
-	}
-
-	psegs := strings.Split(objectPath, ".")
+// MakeDiagram from a document unmarshalled to a container (useful when multiple diagrams are rendered from the same document)
+// m must be a sub map of the schema with the root object being the first object rendered. (TBD.. clunky)
+func MakeDiagram(m map[string]interface{}, path string) (*Diagram, error) {
+	psegs := strings.Split(path, ExternalDivider)
 	root := &Object{Name: psegs[len(psegs)-1]}
-	err = parseProperties(c, root)
+	err := parseProperties(m, root)
 	if err != nil {
 		return nil, err
 	}
@@ -46,12 +26,49 @@ func GenerateDiagram(src io.Reader, objectPath string) (*Diagram, error) {
 	return &Diagram{Root: root}, nil
 }
 
+// ParseToDiagram performs all the necessary steps in one function for creating a diagram.
+func ParseToDiagram(src io.Reader, objectPath string) (*Diagram, error) {
+	objectPath = strings.ReplaceAll(objectPath, ExternalDivider, internalDivider)
+	m, err := ParseToMap(src, objectPath)
+	if err != nil {
+		return nil, err
+	}
+	return MakeDiagram(m, objectPath)
+}
+
+// ParseToMap the selected objectPath. If ObjectPath is the root element of the jsonschema document
+// then all references are going to be resolved in the returned map. This map can be resued with MakeDiagram
+// to generate multiple diagrams from the same source without unmarshallig / resolving references each time.
+func ParseToMap(src io.Reader, objectPath string) (map[string]interface{}, error) {
+	objectPath = strings.ReplaceAll(objectPath, ExternalDivider, internalDivider)
+	c, err := unmarshalSrc(src)
+	if err != nil {
+		return nil, err
+	}
+
+	// resolve $ref items and replace them with the actual definitions
+	resolved, err := resolveReferences(c, objectPath)
+	if err != nil {
+		return nil, err
+	}
+
+	// expect the top level item to be an object (vs. array or scalar)
+	var ok bool
+	c, ok = resolved.(map[string]interface{})
+	if !ok {
+		return nil, fmt.Errorf("src is not an object")
+	}
+	return c, nil
+
+}
+
 type iterItem struct {
 	Key   string
 	Value interface{}
 }
 
-// map[string]interface{} yields random order which can be confusing
+// map[string]interface{} yields random order which can be confusing.
+// Iterable returns the same values as slice members sorted alphabetically
 type iterable []iterItem
 
 func (it iterable) Len() int           { return len(it) }
@@ -77,39 +94,44 @@ func mapToIter(m map[string]interface{}) iterable {
 }
 
 // expected to pass the root object with its name & description already populated
-func parseProperties(c container, parent *Object) error {
-	typ, ok := c["type"].(string)
+func parseProperties(m map[string]interface{}, parent *Object) error {
+	typ, ok := m["type"].(string)
 	if !ok {
-		return fmt.Errorf("parsing error: expecting an object with 'type' field")
+		return fmt.Errorf("parsing error: expecting an object with 'type' field: %v", m)
 	}
 
 	if typ != "object" {
-		return fmt.Errorf("parsing error: container must be of 'object' type (got '%s')", typ)
+		return nil
+		// return fmt.Errorf("parsing error: container must be of 'object' type (got '%s')", typ)
 	}
 
-	properties := getObject(c, "properties")
+	properties := GetObject(m, "properties")
+	if properties == nil {
+		fmt.Println("not an object")
+		return nil
+	}
 	for _, prop := range mapToIter(properties) {
 		rel := "0..1"
 
-		cc := prop.Value.(map[string]interface{})
-		switch cc["type"] {
+		cm := prop.Value.(map[string]interface{})
+		switch cm["type"] {
 		case "object":
-			if isRequiredParam(c, prop.Key) {
+			if isRequiredParam(m, prop.Key) {
 				rel = "1..1"
 			}
 			child := &Object{}
 			child.Name = prop.Key
-			if desc := fmt.Sprint(cc["description"]); len(desc) > 0 {
+			if desc := fmt.Sprint(cm["description"]); len(desc) > 0 {
 				child.Description = desc
 			}
 			composeObject(parent, child, rel)
-			err := parseProperties(cc, child)
+			err := parseProperties(cm, child)
 			if err != nil {
 				return err
 			}
 
 		case "array":
-			if isRequiredParam(c, prop.Key) {
+			if isRequiredParam(m, prop.Key) {
 				rel = "1..*"
 			} else {
 				rel = "0..*"
@@ -117,53 +139,88 @@ func parseProperties(c container, parent *Object) error {
 
 			child := &Object{}
 			child.Name = prop.Key
-			if desc := fmt.Sprint(cc["description"]); len(desc) > 0 {
+			if desc := fmt.Sprint(cm["description"]); len(desc) > 0 {
 				child.Description = desc
 			}
-			composeObject(parent, child, rel)
-			cc = getObject(cc, "items")
-			err := parseProperties(cc, child)
-			if err != nil {
-				return err
+			cm = GetObject(cm, "items")
+			switch cm["type"].(string) {
+			case "array", "object":
+				composeObject(parent, child, rel)
+				// new object within array
+				err := parseProperties(cm, child)
+				if err != nil {
+					return err
+				}
+				continue
+			default:
+				// properties := GetObject(cm, "properties")
+
+				setScalarProperty(prop.Key, rel, properties, parent)
 			}
 
 		default: // scalar
-			if isRequiredParam(c, prop.Key) {
+			if isRequiredParam(m, prop.Key) {
 				rel = "1..1"
 			} else {
 				rel = "0..1"
 			}
-			info := strings.Builder{}
-			for _, key := range []string{"type", "format", "minLength", "maxLength", "description", "enum", "x-namespaced-enum", "pattern"} {
-				switch key {
-				case "enum", "x-namespaced-enum":
-					if value := cc[key]; value != nil {
-						info.WriteString("Values:\n")
-						for _, v := range value.([]interface{}) {
-							info.WriteString(fmt.Sprintf(" - %s\n", v))
-						}
-					}
-				default:
-					if cc[key] != nil {
-						value := fmt.Sprint(cc[key])
-						if len(value) > 0 {
-							info.WriteString(fmt.Sprintf("%s: %s\n", strings.Title(key), value))
-						}
-					}
-				}
-			}
-
-			parent.Properties = append(parent.Properties, Property{
-				Name:         prop.Key,
-				Relationship: rel,
-				Description:  info.String(),
-			})
+			setScalarProperty(prop.Key, rel, cm, parent)
 		}
 	}
 	return nil
 }
 
-func isRequiredParam(c container, name string) bool {
+func setArrayProperties(itemsSchema map[string]interface{}) {
+	// WIP: refactor parseProperties
+}
+
+func setObjectProperties(objectSchema map[string]interface{}, object *Object) error {
+	// WIP: refactor parseProperties
+	m := GetObject(objectSchema, "properties")
+	if m == nil {
+		return nil
+	}
+
+	properties := mapToIter(m)
+	_ = properties
+
+	// for each property:
+	// if object, create child and do recursion
+	// if array, create child and do recursion with "items"
+	// in any other case, apply as scalar property
+
+	return nil
+}
+
+func setScalarProperty(propertyName, rel string, propertySchema map[string]interface{}, o *Object) {
+	info := strings.Builder{}
+	for _, key := range []string{"type", "format", "minLength", "maxLength", "description", "enum", "x-namespaced-enum", "pattern"} {
+		switch key {
+		case "enum", "x-namespaced-enum":
+			if value := propertySchema[key]; value != nil {
+				info.WriteString("Values:\n")
+				for _, v := range value.([]interface{}) {
+					info.WriteString(fmt.Sprintf(" - %s\n", v))
+				}
+			}
+		default:
+			if propertySchema[key] != nil {
+				value := fmt.Sprint(propertySchema[key])
+				if len(value) > 0 {
+					info.WriteString(fmt.Sprintf("%s: %s\n", strings.Title(key), value))
+				}
+			}
+		}
+	}
+
+	o.Properties = append(o.Properties, Property{
+		Name:         propertyName,
+		Relationship: rel,
+		Description:  info.String(),
+	})
+}
+
+func isRequiredParam(c map[string]interface{}, name string) bool {
 	req, _ := c["required"].([]interface{})
 	if req == nil {
 		return false
@@ -185,8 +242,8 @@ func composeObject(parent, child *Object, rel string) {
 	})
 }
 
-func (c container) resolveReferences(path string) (interface{}, error) {
-	src := getUnknown(c, path)
+func resolveReferences(c map[string]interface{}, path string) (interface{}, error) {
+	src := GetUnknown(c, path)
 	var err error
 
 	switch t := src.(type) {
@@ -194,10 +251,10 @@ func (c container) resolveReferences(path string) (interface{}, error) {
 		dst := map[string]interface{}{}
 		for k, v := range t {
 			if k == "$ref" {
-				return c.resolveReferences(strings.ReplaceAll(v.(string)[2:], "/", "."))
+				return resolveReferences(c, strings.ReplaceAll(v.(string)[2:], "/", "."))
 			}
 			subpath := strings.Join([]string{path, k}, ".")
-			dst[k], err = c.resolveReferences(subpath)
+			dst[k], err = resolveReferences(c, subpath)
 			if err != nil {
 				return nil, err
 			}
@@ -208,7 +265,7 @@ func (c container) resolveReferences(path string) (interface{}, error) {
 		dst := make([]interface{}, len(t))
 		for i := range t {
 			subpath := strings.Join([]string{path, fmt.Sprint(i)}, ".")
-			dst[i], err = c.resolveReferences(subpath)
+			dst[i], err = resolveReferences(c, subpath)
 			if err != nil {
 				return nil, err
 			}

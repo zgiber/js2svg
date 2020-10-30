@@ -5,7 +5,7 @@ var (
 	gapHeight = 1.0
 )
 
-// Object ...
+// Object represents a class box in the rendering
 type Object struct {
 	Name        string
 	Description string
@@ -21,18 +21,19 @@ type Property struct {
 	Relationship string // "0..1" | "1..1" | "1..*"
 }
 
-// Composition ...
+// Composition represents a connection between two class boxes
 type Composition struct {
 	Relationship string // "0..1" | "1..1" | "1..*"
 	Object       *Object
 }
 
-// Position ...
+// Position is pretty self explanatory
 type Position struct {
 	X float64
 	Y float64
 }
 
+// this is called once on the root before the diagram is rendered
 func (o *Object) calculateChildPositions() {
 	if len(o.ComposedOf) == 0 {
 		return
@@ -56,6 +57,7 @@ func (o *Object) calculateChildPositions() {
 	}
 }
 
+// NamePosition returns the postiion where the class name is to be rendered
 func (o *Object) NamePosition() Position {
 	return Position{
 		o.Position.X + o.Width()/2,
@@ -63,6 +65,8 @@ func (o *Object) NamePosition() Position {
 	}
 }
 
+// FieldPosition is a function used in the template to calculate the positions
+// of individual property fields in the class box
 func (o *Object) FieldPosition(n int) Position {
 	return Position{
 		o.Position.X + 1.0,
@@ -70,6 +74,7 @@ func (o *Object) FieldPosition(n int) Position {
 	}
 }
 
+// ConnectorInPosition is the target position of an incoming connection (arrow)
 func (o *Object) ConnectorInPosition() Position {
 	return Position{
 		o.Position.X,
@@ -77,6 +82,7 @@ func (o *Object) ConnectorInPosition() Position {
 	}
 }
 
+// ConnectorOutPosition is the source position of an outgoing connection (arrow)
 func (o *Object) ConnectorOutPosition() Position {
 	return Position{
 		o.Position.X + o.Width(),
@@ -84,6 +90,7 @@ func (o *Object) ConnectorOutPosition() Position {
 	}
 }
 
+// Width of the class box
 func (o *Object) Width() float64 {
 	w := len(o.Name)
 	for _, p := range o.Properties {
@@ -95,12 +102,12 @@ func (o *Object) Width() float64 {
 	return float64(w) * 0.8 // for some reason boxes are too wide by default
 }
 
+// Height of the class box
 func (o *Object) Height() float64 {
 	return float64(len(o.Properties))*1.3 + 3.0 // name, line between name and properties, properties, frames
 }
 
-// returns the total width of the tree
-// width of the widest branch with gaps
+// total width of the tree at the widest branch with gaps
 func (o *Object) totalWidth() float64 {
 	w := o.Position.X + o.Width()
 	if len(o.ComposedOf) == 0 {
@@ -116,8 +123,7 @@ func (o *Object) totalWidth() float64 {
 	return w + 1.0
 }
 
-// returns the total height of the tree ...
-// sum of the height of all leaf nodes plus gaps
+// total height of the tree calculated from the lowermost object
 func (o *Object) totalHeight() float64 {
 	// dfs
 	if len(o.ComposedOf) == 0 {
