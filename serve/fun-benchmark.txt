@@ -1,0 +1,27 @@
+Very rough numbers running both server and the test on my Dell XPS 13 (i7). Used the load-rw.sh script to load test data.
+
+
+➜  dev bombardier -c 100 -n 10000 http://localhost:8080/payments/OBWriteInternationalScheduledConsent5
+Bombarding http://localhost:8080/payments/OBWriteInternationalScheduledConsent5 with 10000 request(s) using 100 connection(s)
+ 10000 / 10000 [==================================================================] 100.00% 609/s 16s
+Done!
+Statistics        Avg      Stdev        Max
+  Reqs/sec       616.59     192.27    1277.02
+  Latency      161.99ms   146.65ms      1.25s
+  HTTP codes:
+    1xx - 0, 2xx - 10000, 3xx - 0, 4xx - 0, 5xx - 0
+    others - 0
+  Throughput:    18.75MB/s
+
+
+➜  dev bombardier -c 100 -n 10000 http://localhost:8080/payments/OBWriteFileConsent3                 
+Bombarding http://localhost:8080/payments/OBWriteFileConsent3 with 10000 request(s) using 100 connection(s)
+ 10000 / 10000 [==================================================================] 100.00% 1468/s 6s
+Done!
+Statistics        Avg      Stdev        Max
+  Reqs/sec      1498.99     342.67    5196.35
+  Latency       66.99ms    71.07ms   677.55ms
+  HTTP codes:
+    1xx - 0, 2xx - 10000, 3xx - 0, 4xx - 0, 5xx - 0
+    others - 0
+  Throughput:    18.74MB/s
