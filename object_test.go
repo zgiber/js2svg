@@ -42,7 +42,7 @@ func TestObjectDimensions(t *testing.T) {
 
 func TestParsing(t *testing.T) {
 	// not a real test either...
-	f, err := os.Open("example.yaml")
+	f, err := os.Open("test-example.yaml")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -62,7 +62,10 @@ func TestParsing(t *testing.T) {
 func testObject(name string, h int) *Object {
 	o := Object{Name: name, Description: fmt.Sprintf("test object %s", name)}
 	for i := 0; i < h-4; i++ {
-		o.Properties = append(o.Properties, Property{Name: fmt.Sprintf("someField%v", i), Description: fmt.Sprintf("test property field %v", i), Relationship: "1..1"})
+		o.Properties = append(o.Properties, Property{
+			Name:         fmt.Sprintf("someField%v", i),
+			Description:  fmt.Sprintf("test property field %v", i),
+			Relationship: "1..1"})
 	}
 	return &o
 }
