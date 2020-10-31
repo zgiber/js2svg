@@ -13,8 +13,17 @@ var (
 	internalDivider = "."
 )
 
-// MakeDiagram from a document unmarshalled to a container (useful when multiple diagrams are rendered from the same document)
-// m must be a sub map of the schema with the root object being the first object rendered. (TBD.. clunky)
+// ParseToDiagram performs all the necessary steps for creating a diagram in one function.
+func ParseToDiagram(src io.Reader, objectPath string) (*Diagram, error) {
+	objectPath = strings.ReplaceAll(objectPath, ExternalDivider, internalDivider)
+	m, err := ParseToMap(src, objectPath)
+	if err != nil {
+		return nil, err
+	}
+	return MakeDiagram(m, objectPath)
+}
+
+// MakeDiagram from a document unmarshalled to a map (useful when multiple diagrams are rendered from the same document)
 func MakeDiagram(m map[string]interface{}, path string) (*Diagram, error) {
 	psegs := strings.Split(path, ExternalDivider)
 	root := &Object{Name: psegs[len(psegs)-1]}
@@ -24,16 +33,6 @@ func MakeDiagram(m map[string]interface{}, path string) (*Diagram, error) {
 	}
 
 	return &Diagram{Root: root}, nil
-}
-
-// ParseToDiagram performs all the necessary steps in one function for creating a diagram.
-func ParseToDiagram(src io.Reader, objectPath string) (*Diagram, error) {
-	objectPath = strings.ReplaceAll(objectPath, ExternalDivider, internalDivider)
-	m, err := ParseToMap(src, objectPath)
-	if err != nil {
-		return nil, err
-	}
-	return MakeDiagram(m, objectPath)
 }
 
 // ParseToMap the selected objectPath. If ObjectPath is the root element of the jsonschema document
@@ -62,14 +61,13 @@ func ParseToMap(src io.Reader, objectPath string) (map[string]interface{}, error
 
 }
 
+// map[string]interface{} is iterated in random order which can be confusing.
+// Iterable can provide the same values as slice members sorted alphabetically
+type iterable []iterItem
 type iterItem struct {
 	Key   string
 	Value interface{}
 }
-
-// map[string]interface{} yields random order which can be confusing.
-// Iterable returns the same values as slice members sorted alphabetically
-type iterable []iterItem
 
 func (it iterable) Len() int           { return len(it) }
 func (it iterable) Swap(i, j int)      { it[i], it[j] = it[j], it[i] }
@@ -93,7 +91,7 @@ func mapToIter(m map[string]interface{}) iterable {
 	return items
 }
 
-// expected to pass the root object with its name & description already populated
+// expected to pass a root object with its name & description populated outside this func
 func parseProperties(m map[string]interface{}, parent *Object) error {
 	typ, ok := m["type"].(string)
 	if !ok {
@@ -116,12 +114,12 @@ func parseProperties(m map[string]interface{}, parent *Object) error {
 		cm := prop.Value.(map[string]interface{})
 		switch cm["type"] {
 		case "object":
-			if isRequiredParam(m, prop.Key) {
+			if isRequiredField(m, prop.Key) {
 				rel = "1..1"
 			}
 			child := &Object{}
 			child.Name = prop.Key
-			if desc := fmt.Sprint(cm["description"]); len(desc) > 0 {
+			if desc, isSet := cm["description"].(string); isSet && len(desc) > 0 {
 				child.Description = desc
 			}
 			composeObject(parent, child, rel)
@@ -131,7 +129,7 @@ func parseProperties(m map[string]interface{}, parent *Object) error {
 			}
 
 		case "array":
-			if isRequiredParam(m, prop.Key) {
+			if isRequiredField(m, prop.Key) {
 				rel = "1..*"
 			} else {
 				rel = "0..*"
@@ -139,7 +137,7 @@ func parseProperties(m map[string]interface{}, parent *Object) error {
 
 			child := &Object{}
 			child.Name = prop.Key
-			if desc := fmt.Sprint(cm["description"]); len(desc) > 0 {
+			if desc, isSet := cm["description"].(string); isSet && len(desc) > 0 {
 				child.Description = desc
 			}
 			cm = GetObject(cm, "items")
@@ -159,7 +157,7 @@ func parseProperties(m map[string]interface{}, parent *Object) error {
 			}
 
 		default: // scalar
-			if isRequiredParam(m, prop.Key) {
+			if isRequiredField(m, prop.Key) {
 				rel = "1..1"
 			} else {
 				rel = "0..1"
@@ -216,12 +214,16 @@ func setScalarProperty(propertyName, rel string, propertySchema map[string]inter
 	o.Properties = append(o.Properties, Property{
 		Name:         propertyName,
 		Relationship: rel,
-		Description:  info.String(),
 	})
+	if desc := info.String(); len(desc) > 0 {
+		o.Description = desc
+	}
 }
 
-func isRequiredParam(c map[string]interface{}, name string) bool {
-	req, _ := c["required"].([]interface{})
+// m is the map with the unmarshalled root schema of the object with the property
+// containing the "required" field. name is the name of the field.
+func isRequiredField(m map[string]interface{}, name string) bool {
+	req, _ := m["required"].([]interface{})
 	if req == nil {
 		return false
 	}

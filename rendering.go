@@ -40,14 +40,15 @@ var (
 	objectTemplate = fmt.Sprintf(`
 <rect x="{{.Position.X}}em" y="{{.Position.Y}}em" width="{{.Width}}em" height="{{.Height}}em" fill="%s" stroke="%s" stroke-width="2"/>
 <text style="font-weight:bold" text-anchor="middle" x="{{.NamePosition.X}}em" y="{{.NamePosition.Y}}em" fill="%s">{{.Name}}<title>{{.Description}}</title></text>
-{{range $i, $prop := .Properties}}<text x="{{($.FieldPosition $i).X}}em" y="{{($.FieldPosition $i).Y}}em" fill="%s">{{.Name}} [{{.Relationship}}]<title>{{.Description}}</title></text>
+{{range $i, $prop := .Properties}}<text x="{{($.FieldPosition $i).X}}em" y="{{($.FieldPosition $i).Y}}em" fill="%s">{{.Name}} [{{.Relationship}}]
+{{if .Description}}<title>{{.Description}}</title>{{end}}</text>
 {{end}}`, objectFillColor, strokeColor, strokeColor, propertyColor)
 
-	connectorTemplate = `
-<line x1="{{(index . 0).Start.X}}em" y1="{{(index . 0).Start.Y}}em" x2="{{(index . 0).Stop.X}}em" y2="{{(index . 0).Stop.Y}}em" stroke="darkslategrey" marker-start="url(#Diamond)"/>
-<line x1="{{(index . 1).Start.X}}em" y1="{{(index . 1).Start.Y}}em" x2="{{(index . 1).Stop.X}}em" y2="{{(index . 1).Stop.Y}}em" stroke="darkslategrey" />
-<line x1="{{(index . 2).Start.X}}em" y1="{{(index . 2).Start.Y}}em" x2="{{(index . 2).Stop.X}}em" y2="{{(index . 2).Stop.Y}}em" stroke="darkslategrey" marker-end="url(#Triangle)"/>
-<text x="{{textPosition.X}}em" y="{{textPosition.Y}}em">{{relationship}}</text>`
+	connectorTemplate = fmt.Sprintf(`
+<line x1="{{(index . 0).Start.X}}em" y1="{{(index . 0).Start.Y}}em" x2="{{(index . 0).Stop.X}}em" y2="{{(index . 0).Stop.Y}}em" stroke="%[1]s" marker-start="url(#Diamond)"/>
+<line x1="{{(index . 1).Start.X}}em" y1="{{(index . 1).Start.Y}}em" x2="{{(index . 1).Stop.X}}em" y2="{{(index . 1).Stop.Y}}em" stroke="%[1]s" />
+<line x1="{{(index . 2).Start.X}}em" y1="{{(index . 2).Start.Y}}em" x2="{{(index . 2).Stop.X}}em" y2="{{(index . 2).Stop.Y}}em" stroke="%[1]s" marker-end="url(#Triangle)"/>
+<text x="{{textPosition.X}}em" y="{{textPosition.Y}}em">{{relationship}}</text>`, strokeColor)
 )
 
 // Diagram to be rendered
