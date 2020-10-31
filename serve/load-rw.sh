@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+curl -XPOST http://localhost:8080/collections -d '{"url":"https://raw.githubusercontent.com/OpenBankingUK/read-write-api-specs/master/dist/openapi/account-info-openapi.yaml","schema_path":"components.schemas","collection":"accounts"}'
+curl -XPOST http://localhost:8080/collections -d '{"url":"https://raw.githubusercontent.com/OpenBankingUK/read-write-api-specs/master/dist/openapi/payment-initiation-openapi.yaml","schema_path":"components.schemas","collection":"payments"}'

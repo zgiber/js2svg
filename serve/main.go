@@ -131,7 +131,7 @@ func (s *service) renderObject(w http.ResponseWriter, r *http.Request) {
 	}
 
 	m := js2svg.GetObject(schema, objectName)
-	debug(m)
+	// debug(m)
 
 	d, err := js2svg.MakeDiagram(m, objectName) // path here is really just used for naming the root item
 
@@ -183,7 +183,7 @@ func openRemoteSrc(url string) (io.ReadCloser, error) {
 	}
 
 	if resp.StatusCode/100 != 2 {
-		return nil, fmt.Errorf("remote retuned status %v", resp.StatusCode)
+		return nil, fmt.Errorf("remote returned status %v", resp.StatusCode)
 	}
 
 	return resp.Body, nil
