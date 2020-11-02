@@ -95,7 +95,11 @@ func mapToIter(m map[string]interface{}) iterable {
 func parseProperties(m map[string]interface{}, parent *Object) error {
 	typ, ok := m["type"].(string)
 	if !ok {
-		return fmt.Errorf("parsing error: expecting an object with 'type' field: %v", m)
+		var fields []string
+		for k := range m {
+			fields = append(fields, k)
+		}
+		return fmt.Errorf("parsing error: expecting an object with 'type' field: %v", fields)
 	}
 
 	if typ != "object" {
@@ -119,9 +123,11 @@ func parseProperties(m map[string]interface{}, parent *Object) error {
 			}
 			child := &Object{}
 			child.Name = prop.Key
-			if desc, isSet := cm["description"].(string); isSet && len(desc) > 0 {
-				child.Description = desc
-			}
+			child.Description = fmt.Sprint(cm["description"])
+
+			// if desc, ok := cm["description"].(string); ok && len(desc) > 0 {
+			// child.Description = desc
+			// }
 			composeObject(parent, child, rel)
 			err := parseProperties(cm, child)
 			if err != nil {
@@ -137,9 +143,10 @@ func parseProperties(m map[string]interface{}, parent *Object) error {
 
 			child := &Object{}
 			child.Name = prop.Key
-			if desc, isSet := cm["description"].(string); isSet && len(desc) > 0 {
-				child.Description = desc
-			}
+			child.Description = fmt.Sprint(cm["description"])
+			// if desc, isSet := cm["description"].(string); isSet && len(desc) > 0 {
+			// child.Description = desc
+			// }
 			cm = GetObject(cm, "items")
 			switch cm["type"].(string) {
 			case "array", "object":
