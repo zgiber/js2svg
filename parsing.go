@@ -123,11 +123,9 @@ func parseProperties(m map[string]interface{}, parent *Object) error {
 			}
 			child := &Object{}
 			child.Name = prop.Key
-			child.Description = fmt.Sprint(cm["description"])
-
-			// if desc, ok := cm["description"].(string); ok && len(desc) > 0 {
-			// child.Description = desc
-			// }
+			if desc, ok := cm["description"].(string); ok && len(desc) > 0 {
+				child.Description = desc
+			}
 			composeObject(parent, child, rel)
 			err := parseProperties(cm, child)
 			if err != nil {
@@ -143,11 +141,10 @@ func parseProperties(m map[string]interface{}, parent *Object) error {
 
 			child := &Object{}
 			child.Name = prop.Key
-			child.Description = fmt.Sprint(cm["description"])
-			// if desc, isSet := cm["description"].(string); isSet && len(desc) > 0 {
-			// child.Description = desc
-			// }
 			cm = GetObject(cm, "items")
+			if desc := fmt.Sprint(cm["description"]); len(desc) > 0 {
+				child.Description = desc
+			}
 			switch cm["type"].(string) {
 			case "array", "object":
 				composeObject(parent, child, rel)
@@ -218,13 +215,16 @@ func setScalarProperty(propertyName, rel string, propertySchema map[string]inter
 		}
 	}
 
-	o.Properties = append(o.Properties, Property{
+	newProperty := Property{
 		Name:         propertyName,
 		Relationship: rel,
-	})
-	if desc := info.String(); len(desc) > 0 {
-		o.Description = desc
 	}
+
+	if desc := info.String(); len(desc) > 0 {
+		newProperty.Description = desc
+	}
+
+	o.Properties = append(o.Properties, newProperty)
 }
 
 // m is the map with the unmarshalled root schema of the object with the property
