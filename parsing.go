@@ -142,7 +142,7 @@ func parseProperties(m map[string]interface{}, parent *Object) error {
 			child := &Object{}
 			child.Name = prop.Key
 			cm = GetObject(cm, "items")
-			if desc := fmt.Sprint(cm["description"]); len(desc) > 0 {
+			if desc, ok := cm["description"].(string); ok && len(desc) > 0 {
 				child.Description = desc
 			}
 			switch cm["type"].(string) {
